@@ -121,6 +121,12 @@ public protocol PipecatClientDelegate: AnyObject {
 
     /// Invoked when the LLM attempts to invoke a function. The provided callback must be provided with a return value.
     func onLLMFunctionCall(functionCallData: LLMFunctionCallData, onResult: ((Value) async -> Void)) async
+
+    /// Invoked when network statistics are updated.
+    func onNetworkStatsUpdated(networkStats: RTVINetworkStats)
+
+    /// Invoked when network connection status is updated.
+    func onNetworkConnectionStatusUpdated(networkConnectionStatusUpdate: RTVINetworkConnectionStatusUpdate)
 }
 
 extension PipecatClientDelegate {
@@ -164,4 +170,6 @@ extension PipecatClientDelegate {
     public func onBotTtsStopped() {}
     public func onBotLlmSearchResponse(data: BotLLMSearchResponseData) {}
     public func onLLMFunctionCall(functionCallData: LLMFunctionCallData, onResult: ((Value) async -> Void)) async {}
+    public func onNetworkStatsUpdated(networkStats: RTVINetworkStats) {}
+    public func onNetworkConnectionStatusUpdated(networkConnectionStatusUpdate: RTVINetworkConnectionStatusUpdate) {}
 }
